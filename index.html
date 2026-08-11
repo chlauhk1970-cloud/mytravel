@@ -17,63 +17,280 @@
         }
         
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: var(--text); background-color: #fff; line-height: 1.8; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            color: var(--text); 
+            background-color: #fff; 
+            line-height: 1.8; 
+        }
         
-        /* 導航欄 */
-        nav { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+        /* ===== 導航欄（響應式） ===== */
+        nav { 
+            background: white; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            padding: 15px 5%; 
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            color: var(--primary); 
+            letter-spacing: 1px; 
+        }
         .logo span { color: var(--secondary); }
-        .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: color 0.3s; }
+        .nav-links { 
+            display: flex; 
+            flex-wrap: wrap;
+            list-style: none; 
+            gap: 20px; 
+        }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--dark); 
+            font-weight: 500; 
+            transition: color 0.3s; 
+        }
         .nav-links a:hover { color: var(--secondary); }
 
-        /* 頂部英雄區 */
-		header { 
-			background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('banner.jpg') no-repeat center/cover; 
-			height: 60vh; 
-			display: flex; 
-			flex-direction: column; 
-			justify-content: center; 
-			align-items: center; 
-			color: white; 
-			text-align: center; 
-			padding: 0 20px; 
-		}
-        header h1 { font-size: 3rem; margin-bottom: 15px; font-weight: 700; letter-spacing: 3px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-        header p { font-size: 1.3rem; opacity: 0.95; max-width: 600px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-
-        /* 主體佈局 (含側邊欄，方便未來放 AdSense 廣告) */
-        .main-wrapper { max-width: 1200px; margin: 50px auto; padding: 0 20px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 40px; }
-        
-        @media (max-width: 768px) {
-            .main-wrapper { grid-template-columns: 1fr; }
-            header h1 { font-size: 2.2rem; }
+        /* ===== 頂部英雄區（響應式高度） ===== */
+        header { 
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('banner.jpg') no-repeat center/cover; 
+            min-height: 50vh;
+            height: auto;
+            padding: 80px 20px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            text-align: center; 
+        }
+        header h1 { 
+            font-size: clamp(2rem, 6vw, 3.5rem); 
+            margin-bottom: 15px; 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+        }
+        header p { 
+            font-size: clamp(1rem, 2.5vw, 1.4rem); 
+            opacity: 0.95; 
+            max-width: 600px; 
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3); 
         }
 
-        /* 文章區 */
-        .content-area h2 { color: var(--primary); font-size: 1.8rem; margin-bottom: 30px; padding-bottom: 10px; border-bottom: 2px solid var(--light); }
-        .post-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 40px; border: 1px solid #edf2f7; }
-        .post-img { width: 100%; height: 380px; object-fit: cover; }
-        .post-body { padding: 30px; }
-        .post-meta { font-size: 0.85rem; color: #7f8c8d; margin-bottom: 15px; display: flex; gap: 15px; }
-        .post-title { font-size: 1.6rem; color: var(--primary); margin-bottom: 15px; text-decoration: none; display: block; font-weight: 600; }
-        .post-text { color: #555; font-size: 1.05rem; margin-bottom: 20px; text-align: justify; }
-        
-        /* 心得與照片預留區樣式 */
-        .user-space { background: var(--light); padding: 20px; border-left: 4px solid var(--secondary); border-radius: 4px; margin-top: 25px; }
-        .user-space h4 { margin-bottom: 10px; color: var(--dark); }
-        .photo-placeholder { background: #eaeded; border: 2px dashed #bdc3c7; height: 250px; display: flex; justify-content: center; align-items: center; color: #7f8c8d; border-radius: 6px; margin: 15px 0; font-size: 0.95rem; }
+        /* ===== 主體佈局（響應式格線） ===== */
+        .main-wrapper { 
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+            display: grid; 
+            grid-template-columns: 2.5fr 1fr; 
+            gap: 40px; 
+        }
 
-        /* 側邊欄 (AdSense 廣告黃金位置) */
-        .sidebar { display: flex; flex-direction: column; gap: 30px; }
-        .widget { background: var(--light); padding: 25px; border-radius: 12px; border: 1px solid #edf2f7; }
-        .widget h3 { color: var(--primary); font-size: 1.2rem; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
-        .author-box text-align: center; .author-img { width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 15px; display: block; object-fit: cover; }
-        
-        /* 廣告位預留樣式 */
-        .ads-placeholder { background: #fffde7; border: 1px dashed #fbc02d; padding: 40px 20px; text-align: center; color: #f57f17; font-size: 0.9rem; font-weight: 500; border-radius: 8px; margin: 10px 0; }
+        /* ===== 文章區 ===== */
+        .content-area h2 { 
+            color: var(--primary); 
+            font-size: clamp(1.4rem, 3vw, 1.8rem); 
+            margin-bottom: 25px; 
+            padding-bottom: 10px; 
+            border-bottom: 2px solid var(--light); 
+        }
+        .post-card { 
+            background: white; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow); 
+            margin-bottom: 35px; 
+            border: 1px solid #edf2f7; 
+        }
+        .post-img, 
+        .post1-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0;
+        }
+        .post-body { padding: 25px; }
+        .post-meta { 
+            font-size: 0.85rem; 
+            color: #7f8c8d; 
+            margin-bottom: 12px; 
+            display: flex; 
+            flex-wrap: wrap;
+            gap: 12px; 
+        }
+        .post-title { 
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem); 
+            color: var(--primary); 
+            margin-bottom: 12px; 
+            text-decoration: none; 
+            display: block; 
+            font-weight: 600; 
+        }
+        .post-text { 
+            color: #555; 
+            font-size: clamp(0.95rem, 1.2vw, 1.05rem); 
+            margin-bottom: 18px; 
+            text-align: justify; 
+        }
 
-        footer { background: var(--primary); color: #cbd5e1; text-align: center; padding: 40px 20px; margin-top: 60px; font-size: 0.9rem; }
+        /* ===== 心得區塊（更舒適的排版） ===== */
+        .user-space { 
+            background: var(--light); 
+            padding: 20px 22px; 
+            border-left: 4px solid var(--secondary); 
+            border-radius: 4px; 
+            margin-top: 20px; 
+        }
+        .user-space h4 { 
+            margin: 18px 0 8px 0; 
+            color: var(--dark); 
+            font-size: 1.1rem;
+        }
+        .user-space h4:first-of-type { margin-top: 0; }
+        .user-space p { 
+            margin-bottom: 12px; 
+            font-size: 0.98rem; 
+            line-height: 1.9;
+        }
+        .user-space .photo-placeholder { 
+            background: #eaeded; 
+            border: 2px dashed #bdc3c7; 
+            min-height: 180px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            color: #7f8c8d; 
+            border-radius: 6px; 
+            margin: 15px 0; 
+            font-size: 0.95rem; 
+        }
+        .user-space img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        /* ===== 側邊欄（響應式） ===== */
+        .sidebar { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 30px; 
+        }
+        .widget { 
+            background: var(--light); 
+            padding: 22px 20px; 
+            border-radius: 12px; 
+            border: 1px solid #edf2f7; 
+        }
+        .widget h3 { 
+            color: var(--primary); 
+            font-size: 1.15rem; 
+            margin-bottom: 12px; 
+            padding-bottom: 8px; 
+            border-bottom: 2px solid #e2e8f0; 
+        }
+        .author-box { text-align: center; }
+        .author-img { 
+            width: 90px; 
+            height: 90px; 
+            border-radius: 50%; 
+            margin: 0 auto 12px; 
+            display: block; 
+            object-fit: cover; 
+        }
+        .widget ul { 
+            list-style: none; 
+            font-size: 0.95rem; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+        }
+
+        /* ===== 廣告位預留（響應式） ===== */
+        .ads-placeholder { 
+            background: #fffde7; 
+            border: 1px dashed #fbc02d; 
+            padding: 30px 16px; 
+            min-height: 160px;
+            text-align: center; 
+            color: #f57f17; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            border-radius: 8px; 
+            margin: 8px 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ===== 頁腳 ===== */
+        footer { 
+            background: var(--primary); 
+            color: #cbd5e1; 
+            text-align: center; 
+            padding: 35px 20px; 
+            margin-top: 50px; 
+            font-size: 0.9rem; 
+        }
+
+        /* ============================================================ */
+        /* ===== 響應式斷點：平板（小於 900px） ===== */
+        @media (max-width: 900px) {
+            .main-wrapper { 
+                grid-template-columns: 1fr; 
+                gap: 30px; 
+            }
+            .sidebar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* ===== 響應式斷點：手機（小於 600px） ===== */
+        @media (max-width: 600px) {
+            nav { 
+                flex-direction: column; 
+                gap: 12px; 
+                padding: 12px 5%; 
+            }
+            .nav-links { 
+                justify-content: center; 
+                gap: 14px; 
+                font-size: 0.9rem; 
+            }
+            header { 
+                min-height: 40vh; 
+                padding: 50px 16px; 
+            }
+            .main-wrapper { padding: 0 14px; margin: 25px auto; }
+            .post-body { padding: 18px; }
+            .user-space { padding: 16px; }
+            .user-space h4 { font-size: 1rem; }
+            .sidebar {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .widget { padding: 18px 16px; }
+            .ads-placeholder { min-height: 130px; padding: 20px 12px; }
+            footer { padding: 25px 16px; font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -100,11 +317,10 @@
         
         <!-- 左側：文章列表 -->
         <main class="content-area">
-            <h2> 最新旅行故事</h2>
+            <h2>📖 最新旅行故事</h2>
 
-            <!-- 文章一：完整引導文 -->
+            <!-- 文章一 -->
             <article class="post-card">
-                <!--img class="post-img" src="https://picsum.photos" alt="自由行入門"-->
                 <div class="post-body">
                     <div class="post-meta">
                         <span>📅 2025年8月</span> | <span>🏷️ 自由行指南</span> | <span>✍️ 漫步者</span>
@@ -114,19 +330,16 @@
                         旅行的意義不在於走過多少地方，而是在於你如何與這個世界產生共鳴。對於許多習慣了跟團旅遊的人來說，邁出自由行的第一步往往充滿了未知與焦慮。然而，一場精心策劃的自由行，能帶給你無與倫比的自主權與深度體驗。從挑選目的地、控管預算、預訂高CP值住宿，到利用地圖工具規劃每日行程，自由行的每一個環節都是一場自我能力的修行。
                     </p>
                     
-                    <!-- 留空區域一：供你自行添加內容 -->
                     <div class="user-space">
-						<h4>✈️ 我的絲綢之路</h4> 
-						<p>2025年的盛夏，我踏進了張掖國家地質公園。當親眼望見那連綿起伏的彩色丘陵——赭紅、薑黃、灰白、靛青如波浪般交錯層疊，震撼得說不出話。彷彿大地被上帝打翻的調色盤染過，又像億萬年時光凝固成的油畫。出發前我只當是「看石頭」，真正站在觀景台上，才驚覺自己的渺小。風很乾，陽光刺眼，但每一步都想停下來細看。這不是打卡，是一場與地球深層記憶的無聲對話。</p>
-                        <img class="post1-img" src="post1.jpg" width="800" height="500">
-						
+                        <h4>✈️ 我的絲綢之路</h4> 
+                        <p>2025年的盛夏，我踏進了張掖國家地質公園。當親眼望見那連綿起伏的彩色丘陵——赭紅、薑黃、灰白、靛青如波浪般交錯層疊，震撼得說不出話。彷彿大地被上帝打翻的調色盤染過，又像億萬年時光凝固成的油畫。出發前我只當是「看石頭」，真正站在觀景台上，才驚覺自己的渺小。風很乾，陽光刺眼，但每一步都想停下來細看。這不是打卡，是一場與地球深層記憶的無聲對話。</p>
+                        <img class="post1-img" src="post1.jpg" alt="張掖國家地質公園">
                     </div>
                 </div>
             </article>
 
-            <!-- 文章二：小眾景點探秘 -->
+            <!-- 文章二 -->
             <article class="post-card">
-                <!--img class="post-img" src="https://picsum.photos" alt="小眾旅遊"-->
                 <div class="post-body">
                     <div class="post-meta">
                         <span>📅 2026年8月</span> | <span>🏷️ 秘境探秘</span> | <span>✍️ 漫步者</span>
@@ -136,33 +349,30 @@
                         當熱門景點被擁擠的人群和商業化的商鋪填滿時，越來越多的旅行者開始尋找那些尚未被過度開發的隱世秘境。這些地方或許交通不算便利，或許沒有五星級的大酒店，但它們保留了最原汁原味的自然風光與地方文化。無論是隱匿在群山之中的古老村落，還是地圖上幾乎找不到名字的靜謐海灘，探索這些地方的過程本身，就是對旅行定義的最佳詮釋。
                     </p>
                     
-                    <!-- 留空區域二：供你自行添加內容 -->
                     <div class="user-space">
                         <h4>🏞️ 我心目中的「避世秘境」</h4>
-						<h4>震撼的視覺衝擊</h4>
+                        <h4>💥 震撼的視覺衝擊</h4>
                         <p>踏入峽谷的瞬間，最直觀的感受通常是地形的壓迫感與壯麗。兩側巉巖如刀削斧劈，陽光從狹窄的裂隙中傾瀉而下，切割出明顯的光影界線。這種紅褐色岩層在風蝕與水蝕下形成的奇特地貌，往往給人一種身處外星球的錯覺，岩壁上粗糙的紋理彷彿是地球億萬年地質運動的史書。</p>
-						<br>
-						<h4>探險與敬畏之心</h4>
+                        
+                        <h4>🧭 探險與敬畏之心</h4>
                         <p>穿梭於曲折的谷徑中，腳下是鬆軟的沙土或堅硬的礫石，手邊觸摸到的岩壁帶著陽光的餘溫。在這種環境下，會不自覺地放慢腳步，聆聽風穿過峽谷的呼嘯聲，內心感到一種遠離塵囂的平靜。這種經歷通常不僅是一次徒步，更像是一場與古老地球的對話，讓人對自然的鬼斧神工心生敬畏。</p>
                         
-                        <img class="post2-img" src="post2.jpg" width="800" height="500">
+                        <img class="post1-img" src="post2.jpg" alt="峽谷秘境">
                     </div>
                 </div>
             </article>
 
         </main>
 
-        <!-- 右側：側邊欄 (Google AdSense 審査極為看重的結構) -->
+        <!-- 右側：側邊欄 -->
         <aside class="sidebar">
             
-            <!-- 博主簡介 -->
             <div class="widget author-box">
                 <h3>關於漫步者</h3>
-				<img class="author-img" src="blogger.jpg" alt="博主頭像" width="100" height="100">
+                <img class="author-img" src="blogger.jpg" alt="博主頭像">
                 <p style="font-size: 0.9rem; color: #666; text-align: center;">一位熱愛探索世界、專注於商業網絡優化的自由旅行家。在這裡，我用 `.REST` 的生活態度，分享最真實的遠方故事。</p>
             </div>
 
-            <!-- 廣告位預留 1 (向 Google 展現你具備良好的廣告展示排版) -->
             <div class="widget">
                 <h3>贊助商廣告</h3>
                 <div class="ads-placeholder">
@@ -171,10 +381,9 @@
                 </div>
             </div>
 
-            <!-- 旅行工具箱 -->
             <div class="widget">
                 <h3>旅行工具箱推薦</h3>
-                <ul style="list-style: none; font-size: 0.95rem; display: flex; flex-direction: column; gap: 10px;">
+                <ul>
                     <li>🌐 Skyscanner 機票比價網</li>
                     <li>🏨 Booking.com 獨家住宿優惠</li>
                     <li>🗺️ Google Maps 離線地圖指南</li>
@@ -184,7 +393,6 @@
         </aside>
     </div>
 
-    <!-- 頁腳 -->
     <footer>
         <p>&copy; 2026 Rambler's Life (.REST). 保留所有權利。</p>
         <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.6;">本站由 Cloudflare Pages 提供全球高安全性加速技術支持</p>
